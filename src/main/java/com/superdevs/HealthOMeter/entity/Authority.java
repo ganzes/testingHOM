@@ -1,9 +1,7 @@
 package com.superdevs.HealthOMeter.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity(name = "authorities")
 public class Authority {
@@ -12,6 +10,9 @@ public class Authority {
     private Long id;
 
     private String authority;
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "authorities")
+    private Set<User> users;
 
     public Long getId() {
         return id;
@@ -27,5 +28,13 @@ public class Authority {
 
     public void setAuthority(String authority) {
         this.authority = authority;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }

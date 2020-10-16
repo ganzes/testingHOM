@@ -18,6 +18,7 @@ import java.util.List;
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRepo userRepo;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User appUser = userRepo.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("No user exists!"));
@@ -28,7 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             grantList.add(grantedAuthority);
         }
 
-        UserDetails userDetails = (UserDetails) new org.springframework.security.core.userdetails.User(
+        UserDetails userDetails = new org.springframework.security.core.userdetails.User(
                 appUser.getUsername(), appUser.getPassword(), grantList);
 
         return userDetails;
