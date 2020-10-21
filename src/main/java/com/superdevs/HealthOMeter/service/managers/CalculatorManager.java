@@ -19,4 +19,14 @@ public class CalculatorManager {
         return weight.divide(height.pow(2), mathContext);
     }
 
+    public BigDecimal calculateWhr (BigDecimal waistRatio, BigDecimal hipRatio){
+        MathContext mathContext = new MathContext(2, RoundingMode.HALF_UP);
+
+        if(waistRatio == null || hipRatio == null ||
+                waistRatio.compareTo(BigDecimal.ZERO) == 0 || hipRatio.compareTo(BigDecimal.ZERO)== 0)
+            return new BigDecimal("0.0000");
+
+        return waistRatio.divide(hipRatio, mathContext);
+    }
+
 }
