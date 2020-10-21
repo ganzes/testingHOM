@@ -53,4 +53,16 @@ class HealthOMeterApplicationTests {
 		//Assert
 		Assertions.assertEquals(expectedScore, result);
 	}
+
+	@Test
+	void testCalculatorServiceForWhrWithZero(){
+		//Arrange
+		BigDecimal waist = new BigDecimal("0");
+		BigDecimal hip = new BigDecimal("93");
+		BigDecimal expectedScore = new BigDecimal("0.0000");
+		//Act
+		BigDecimal result = calculatorService.getCalculateWHR(waist,hip);
+		//Assert
+		Assertions.assertEquals(expectedScore, result);
+	}
 }
