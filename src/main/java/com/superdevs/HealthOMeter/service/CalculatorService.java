@@ -16,4 +16,8 @@ public class CalculatorService {
         return calculatorManager.calculateBMI(weight, height);
     }
 
+    public BigDecimal getCalculateWHR(BigDecimal waistRatio, BigDecimal hipRatio) {
+
+        return calculatorManager.calculateWhr(waistRatio, hipRatio);
+}
 }
