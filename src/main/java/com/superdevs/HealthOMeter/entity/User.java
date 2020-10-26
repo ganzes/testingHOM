@@ -1,9 +1,6 @@
 package com.superdevs.HealthOMeter.entity;
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import javax.persistence.*;
-import java.util.Collections;
 import java.util.Set;
 
 @Entity(name = "users")
@@ -56,7 +53,6 @@ public class User {
 
     public Set<Authority> getAuthorities() {
         return authorities;
-//        return Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     public void setAuthorities(Set<Authority> authorities) {

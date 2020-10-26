@@ -4,6 +4,8 @@ import com.superdevs.HealthOMeter.entity.Authority;
 import com.superdevs.HealthOMeter.entity.User;
 import com.superdevs.HealthOMeter.repository.AuthorityRepo;
 import com.superdevs.HealthOMeter.repository.UserRepo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,8 @@ import java.util.Set;
 
 @Service
 public class UserService {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     @Autowired
     private UserRepo userRepo;
 
@@ -30,12 +34,11 @@ public class UserService {
             user.setAuthorities(userAuthorities);
             userRepo.save(user);
         } else {
-            System.out.println("User " + user.getUsername() + " already exists");
+            logger.info("Such user already exists");
         }
     }
 
     private boolean ifUserNotExist(User user) {
         return userRepo.findByUsername(user.getUsername()).isEmpty();
     }
-
 }
